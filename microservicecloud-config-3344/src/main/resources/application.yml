@@ -1,0 +1,16 @@
+server:
+   port: 3344
+
+spring:
+  application:
+    name:  microservicecloud-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/sxydxg/microservicecloud-config.git  # github上的仓库名字也叫这个
+
+
+#http://localhost:3344/application-test.yml
+#http://localhost:3344/application-dev.yml
+# 可以百度 springcloud config（配置读取规则）

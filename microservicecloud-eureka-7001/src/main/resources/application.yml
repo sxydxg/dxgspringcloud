@@ -1,0 +1,19 @@
+server:
+  port: 7001
+eureka:
+  instance:
+    hostname: eureka7001.com # eureka 服务端实例名称（？，你写ip就在eureka集群的时候显示ip名称）
+  client:
+    register-with-eureka: false  # 是否注册自己
+    fetch-registry: false   # 标识自己就是注册中心，不需要检索服务（就是获取服务的注册信息）
+    service-url:
+      #defaultZone: http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
+      #电脑内存不够用将eureka集群换成单机版
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+    # eureka服务交互的地址，如果只有本机你就直接不写（省略service-url）
+    #service-url:
+      #defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/ #服务交互的地址，检测是否有用要去掉 /eureka
+      # 访问 http://localhost:7001/ 就可以检测eureka是否有效
+
+# hosts 文件地址 C:\Windows\System32\drivers\etc

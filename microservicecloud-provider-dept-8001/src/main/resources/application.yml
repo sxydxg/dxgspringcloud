@@ -1,0 +1,33 @@
+server:
+  port: 8001
+  context-path: /
+
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml  #mybatis配置文件
+  type-aliases-package: sxy.dxg.springcloud.entity     # 为实体类配置别名
+  mapper-locations: classpath:mybatis/mapper/**/*.xml # 扫描mapper.xml文件
+spring:
+  application:
+    name: microservicecloud-dept # spring 微服务的名字
+  datasource:
+    url: jdbc:mysql://localhost:3306/springcloud01?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver     # mysql驱动
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+      #关掉eureka集群
+      #defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    instance-id: microservicecloud-dpet8001   # 自定义在eureka注册中心--->status中显示服务名称
+    prefer-ip-address: true                 # 显示在注册中心显示ip地址
+
+info:
+  app.name: microservicecloud
+  company.name: www.dxg.sxy
+  build.artifactId: $project.artifactId$   # 这个怎么不生效呢？
+  build.version: $project.version$          # 这个怎么不生效呢？
+

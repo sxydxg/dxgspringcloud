@@ -1,0 +1,51 @@
+server:
+  port: 9527
+
+spring:
+  application:
+    name: microservicecloud-zuul-geteway
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+      #defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    hostname: localhost    #myzuul.com    #配置本地端口对应的名称s
+    instance-id: geteway-9527.com
+    prefer-ip-address: true
+info:
+  app.name: microservicecloud-zuul-geteway-9527
+  company.name: www.baidu.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+
+zuul:
+  prefix: /dxg         #访问公共前缀
+  strip-prefix: true   # 去除/dxg 前缀
+  ignored-services: "*"   #不暴露微服务名称
+  routes:
+    haha: # 名字可以随便取
+     stripPrefix: true  # 取出/dept-service前缀
+     path: /dept-service/**
+     serviceId: MICROSERVICECLOUD-DEPT  # 访问那一个微服务名称
+     #url: /dept/list  这个是不能配的，脑袋短路了，呵呵
+    haha2:
+      path: /dept-service2/**
+      serviceId: MICROSERVICECLOUD-DEPT
+
+
+# http://localhost:9527/dxg/dept-service/dept/list
+# http://microservicecloud-dept/dept/list
+
+#  还有很多配置可以配置（只能百度了）
+
+
+
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 60000

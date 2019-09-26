@@ -1,0 +1,13 @@
+# 该配置文件为系统级配置文件，优先级比application.yml更高.spring:
+spring:
+  cloud:
+    config:
+      uri: http://localhost:3344/
+      label: master
+      profile: dev  # 访问配置项
+      name: microservicecloud-config-client # 需要从github读取的资源名，
+      # 注意没有yml后缀名
+
+# 注意该程序的端口有github上的程序确定，
+#如果 profile: dev ------> http://localhost:8201/config
+#如果 profile: test ------> http://localhost:8202/config

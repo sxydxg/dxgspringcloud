@@ -1,0 +1,20 @@
+server:
+  port: 80
+  context-path: /
+spring:
+  application:
+    name: microservicecloud-consumer-dept-hystrix
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+    register-with-eureka: false   # 不向注册中心注册自己
+    fetch-registry: true     # 获取注册中心的服务的信息
+
+#hystrix:
+#    command:
+#        default:
+#            execution:
+#               isolation:
+#                  thread:
+#                       timeoutInMilliseconds: 3000
